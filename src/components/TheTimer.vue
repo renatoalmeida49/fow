@@ -1,9 +1,23 @@
 <template>
   <div>
-      <p>{{formattedTime}}</p>
-      <button @click="startTimer">Iniciar</button>
-      <button @click="pause">Pausar</button>
-      <button @click="reset">Reset</button>
+      <v-row justify="center">
+          <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
+              <span class="text-h1">{{formattedTime}}</span>
+          </v-col>
+      </v-row>
+      <v-row justify="center" class="mb-4">
+        <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
+            <v-btn @click="startTimer">
+                <v-icon>mdi-play</v-icon>
+            </v-btn>
+            <v-btn @click="pause">
+                <v-icon>mdi-pause</v-icon>
+            </v-btn>
+            <v-btn @click="reset">
+                <v-icon>mdi-restart</v-icon>
+            </v-btn>
+        </v-col>
+      </v-row>
   </div>
 </template>
 
@@ -15,11 +29,12 @@ export default {
     data() {
         return {
             timePassed: 0,
-            timerInterval: null
+            timerInterval: null,
+            time: 0
         }
     },
     computed: {
-        ...mapState(["time"]),
+        ...mapState(["focusTime", "breakTime"]),
         
         timeLeft() {
             return this.time - this.timePassed
@@ -41,6 +56,7 @@ export default {
             this.timerInterval = setInterval(() => {
                 if (this.timePassed == this.time) {
                     clearInterval(this.timerInterval)
+                    this.startBreaktime()
                 } else {
                     this.timePassed++
                 }
@@ -53,7 +69,22 @@ export default {
         },
         reset() {
             this.timePassed = 0
+        },
+        startBreaktime() {
+            this.time = this.breakTime
+            this.reset()
+
+            this.timerInterval = setInterval(() => {
+                if (this.timePassed == this.time) {
+                    clearInterval(this.timerInterval)
+                } else {
+                    this.timePassed++
+                }
+            }, 1000)
         }
+    },
+    created() {
+        this.time = this.focusTime
     }
 }
 </script>

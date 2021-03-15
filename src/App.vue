@@ -8,8 +8,11 @@
     </v-app-bar>
 
     <v-main>
-      <ConfigTime />
-      <TheTimer />
+      <v-container>
+        <TheTimer />
+
+        <ConfigTime />
+      </v-container>
     </v-main>
   </v-app>
 </template>

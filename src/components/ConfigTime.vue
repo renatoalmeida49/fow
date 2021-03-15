@@ -1,34 +1,42 @@
 <template>
-    <v-dialog
-        v-model="dialog"
-    >
-        <template v-slot:activator="{ on }">
-            <v-btn
-                v-on="on"
+    <v-row justify="center">
+        <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
+            <v-dialog
+                v-model="dialog"
             >
-                Configurar tempo
-            </v-btn>
-        </template>
+                <template v-slot:activator="{ on }">
+                    <v-btn
+                        v-on="on"
+                    >
+                        <v-icon>mdi-cog</v-icon>
+                    </v-btn>
+                </template>
 
-        <v-card>
-            <v-card-title>
-                Configurar tempo
-            </v-card-title>
+                <v-card>
+                    <v-card-title>
+                        Configurar tempo
+                    </v-card-title>
 
-            <v-card-text>
-                <p>Ajuste o tempo do cronometro:</p>
-                <v-btn @click="increase(60)">+ Minutos</v-btn>
-                <v-btn @click="increase(1)">+ Segundos</v-btn>
+                    <v-card-text>
+                        <p>Ajuste o tempo do cronometro:</p>
+                        <v-btn @click="increase(60)">
+                            <v-icon>mdi-plus-thick</v-icon> Minutos
+                        </v-btn>
+                        <v-btn @click="increase(1)">
+                            <v-icon>mdi-plus-thick</v-icon> Segundos
+                        </v-btn>
 
-                <p>{{formattedSeconds}}</p>
+                        <span class="text-h1">{{formattedSeconds}}</span>
 
-                <v-btn @click="decrease(60)">- Minutos</v-btn>
-                <v-btn @click="decrease(1)">- Segundos</v-btn>
+                        <v-btn @click="decrease(60)">- Minutos</v-btn>
+                        <v-btn @click="decrease(1)">- Segundos</v-btn>
 
-                <v-btn @click="newTime">Configurar timer</v-btn>
-            </v-card-text>
-        </v-card>
-    </v-dialog>
+                        <v-btn @click="newTime">Configurar timer</v-btn>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+        </v-col>
+    </v-row>
 </template>
 
 <script>

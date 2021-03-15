@@ -5,9 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-      time: 3120,
+      focusTime: 5,
       // 5217 = 3120, Pomodoro = 1500
-      interval: 1020, 
+      breakTime: 15, 
       // 5217 = 1020, Pomodoro = 300 
       repeat: 0
   },
