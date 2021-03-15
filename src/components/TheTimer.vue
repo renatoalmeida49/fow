@@ -30,7 +30,8 @@ export default {
         return {
             timePassed: 0,
             timerInterval: null,
-            time: 0
+            time: 0,
+            interval: false
         }
     },
     computed: {
@@ -52,37 +53,33 @@ export default {
         }
     },
     methods: {
+        reset() {
+            this.timePassed = 0
+        },
+        toggle() {
+            this.interval = !this.interval
+
+            this.reset()
+
+            if(!this.interval)
+                this.time = this.focusTime
+            else
+                this.time = this.breakTime
+        },
         startTimer() {
             this.timerInterval = setInterval(() => {
                 if (this.timePassed == this.time) {
                     clearInterval(this.timerInterval)
-                    this.startBreaktime()
+                    this.toggle()
                 } else {
                     this.timePassed++
                 }
-
-                console.log("Running")
             }, 1000)
         },
         pause() {
             clearInterval(this.timerInterval)
         },
-        reset() {
-            this.timePassed = 0
-        },
-        startBreaktime() {
-            this.time = this.breakTime
-            this.reset()
-
-            this.timerInterval = setInterval(() => {
-                if (this.timePassed == this.time) {
-                    clearInterval(this.timerInterval)
-                } else {
-                    this.timePassed++
-                }
-            }, 1000)
-        }
-    },
+    },    
     created() {
         this.time = this.focusTime
     }
