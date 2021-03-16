@@ -29,22 +29,18 @@
                 <v-icon>mdi-restart</v-icon>
             </v-btn>
         </v-col>
-
-        <v-col cols="12">
-            <ConfigTime />
-        </v-col>
     </v-row>
 </template>
 
 <script>
 import { mapState } from "vuex"
-import ConfigTime from "@/components/ConfigTime.vue"
+
 import * as Tone from 'tone'
 
 export default {
     name: "TheTimer",
     components: {
-        ConfigTime
+        
     },
     data() {
         return {

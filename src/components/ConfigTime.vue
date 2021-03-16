@@ -95,6 +95,7 @@ export default {
         },
         newTime() {
             this.changeTime({focusTime: this.timeFocus, breakTime: this.timeBreaktime})
+            this.$emit("render")
             this.dialog = false
         }
     }

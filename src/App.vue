@@ -21,7 +21,9 @@
         :class="{breakTime: interval, focus: !interval}"
       >
       
-      <TheTimer @toggle="toggle" />
+      <TheTimer @toggle="toggle" :key="componentKey"/>
+
+      <ConfigTime @render="forceRender" />
 
       </v-container>
     </v-main>
@@ -31,21 +33,27 @@
 <script>
 
 import TheTimer from '@/components/TheTimer.vue'
+import ConfigTime from '@/components/ConfigTime.vue'
 
 export default {
   name: 'App',
   components: {
-    
+    ConfigTime,
     TheTimer
   },
 
   data: () => ({
-    interval: false
+    interval: false,
+    componentKey: 0,
   }),
 
   methods: {
     toggle() {
       this.interval = !this.interval
+    },
+    forceRender() {
+      this.componentKey += 1
+      this.interval = false
     }
   }
 };
