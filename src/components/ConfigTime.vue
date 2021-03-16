@@ -18,19 +18,28 @@
                     </v-card-title>
 
                     <v-card-text>
-                        <p>Ajuste o tempo do cronometro:</p>
-                        <v-btn @click="increase(60)">
+                        <p>Ajuste o tempo de foco:</p>
+                        <v-btn @click="increase(60, 'focus')">
                             <v-icon>mdi-plus-thick</v-icon> Minutos
                         </v-btn>
-                        <v-btn @click="increase(1)">
-                            <v-icon>mdi-plus-thick</v-icon> Segundos
+
+                        <span class="text-h1">{{formattedFocus}}</span>
+
+                        <v-btn @click="decrease(60, 'focus')">- Minutos</v-btn>
+
+                    </v-card-text>
+
+                    <v-card-text>
+                        <p>Ajuste o tempo de descanso:</p>
+                        <v-btn @click="increase(60, 'break')">
+                            <v-icon>mdi-plus-thick</v-icon> Minutos
                         </v-btn>
+                        <span class="text-h1">{{formattedBreaktime}}</span>
 
-                        <span class="text-h1">{{formattedSeconds}}</span>
+                        <v-btn @click="decrease(60, 'break')">- Minutos</v-btn>
+                    </v-card-text>
 
-                        <v-btn @click="decrease(60)">- Minutos</v-btn>
-                        <v-btn @click="decrease(1)">- Segundos</v-btn>
-
+                    <v-card-text>
                         <v-btn @click="newTime">Configurar timer</v-btn>
                     </v-card-text>
                 </v-card>
@@ -47,41 +56,45 @@ export default {
     data() {
         return {
             dialog: false,
-            time: 60
+            timeFocus: 60,
+            timeBreaktime: 60
         }
     },
     computed: {
-        formattedSeconds() {
-            const minutes = Math.floor(this.time / 60)
-            let seconds = this.time % 60
+        formattedFocus() {
+            return this.format(this.timeFocus)
+        },
+        formattedBreaktime() {
+            return this.format(this.timeBreaktime)
+        }
+    },
+    methods: {
+        ...mapActions(["changeTime"]),
+
+        format(value) {
+            const minutes = Math.floor(value/ 60)
+            let seconds = value % 60
 
             if(seconds < 10) {
                 seconds = `0${seconds}`
             }
 
             return `${minutes}:${seconds}`
-        }
-    },
-    methods: {
-        ...mapActions(["changeTime"]),
-
-        increase(value) {
-            this.time += value
         },
-        decrease(value) {
-            switch(value) {
-                case 1:
-                    if(this.time > 0)
-                        this.time--
-                    break;
-                case 60:
-                    if(this.time > 60)
-                        this.time -= 60
-                    break;
-            }
+        increase(value, type) {
+            if (type == 'focus')
+                this.timeFocus += value
+            else
+                this.timeBreaktime += value
+        },
+        decrease(value, type) {
+            if (type == 'focus')
+                this.timeFocus -= value
+            else
+                this.timeBreaktime -= value
         },
         newTime() {
-            this.changeTime(this.time)
+            this.changeTime({focusTime: this.timeFocus, breakTime: this.timeBreaktime})
             this.dialog = false
         }
     }

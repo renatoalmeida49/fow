@@ -1,7 +1,9 @@
 <template>
     <v-row fill-height justify="center" :class="{breakTime: interval, focus: !interval}">
         <v-col cols="12" style="justify-content: center" class="d-flex">
-            <span class="text-h1 font-weight-black" style="color: black">{{formattedTime}}</span>
+            <span class="text-h1 font-weight-black" style="color: black">
+                {{formattedTime}}
+            </span>
         </v-col>
         
         <v-col cols="12" style="justify-content: center" class="d-flex">
@@ -51,7 +53,7 @@ export default {
             time: 0,
             interval: false,
 
-            sound: null
+            sound: null,
         }
     },
     computed: {
