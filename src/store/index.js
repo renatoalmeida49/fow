@@ -17,7 +17,7 @@ export default new Vuex.Store({
       },
       focusTime: 5,
       // 5217 = 3120, Pomodoro = 1500
-      breakTime: 15, 
+      breakTime: 10, 
       // 5217 = 1020, Pomodoro = 300 
       repeat: 0
   },
