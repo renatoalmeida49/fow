@@ -2,29 +2,37 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="#FFCCBC"
       dark
     >
+    <v-spacer></v-spacer>
+    
+    <v-img
+      src="@/assets/logo.png"
+      max-width="50"
+    />
+
+    <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-main>
-      <v-container>
-        <TheTimer />
+    <v-main fill-height>
+      <v-container fill-height>
+      
+      <TheTimer />
 
-        <ConfigTime />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import ConfigTime from '@/components/ConfigTime.vue'
+
 import TheTimer from '@/components/TheTimer.vue'
 
 export default {
   name: 'App',
   components: {
-    ConfigTime,
+    
     TheTimer
   },
 

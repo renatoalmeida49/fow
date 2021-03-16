@@ -1,31 +1,36 @@
 <template>
-  <div>
-      <v-row justify="center" :class="{breakTime: interval, focus: !interval}">
-          <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
-              <span class="text-h1">{{formattedTime}}</span>
-          </v-col>
-      </v-row>
-      <v-row justify="center" class="mb-4">
-        <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
-            <v-btn @click="startTimer">
+    <v-row fill-height justify="center" :class="{breakTime: interval, focus: !interval}">
+        <v-col cols="12" style="justify-content: center" class="d-flex">
+            <span class="text-h1" style="color: black">{{formattedTime}}</span>
+        </v-col>
+        
+        <v-col cols="12" style="justify-content: center" class="d-flex">
+            <v-btn @click="startTimer" class="mx-1">
                 <v-icon>mdi-play</v-icon>
             </v-btn>
-            <v-btn @click="pause">
+            <v-btn @click="pause" class="mx-1">
                 <v-icon>mdi-pause</v-icon>
             </v-btn>
-            <v-btn @click="reset">
+            <v-btn @click="reset" class="mx-1">
                 <v-icon>mdi-restart</v-icon>
             </v-btn>
         </v-col>
-      </v-row>
-  </div>
+
+        <v-col cols="12">
+            <ConfigTime />
+        </v-col>
+    </v-row>
 </template>
 
 <script>
 import { mapState } from "vuex"
+import ConfigTime from "@/components/ConfigTime.vue"
 
 export default {
     name: "TheTimer",
+    components: {
+        ConfigTime
+    },
     data() {
         return {
             timePassed: 0,
@@ -88,10 +93,10 @@ export default {
 
 <style scoped>
 .focus {
-    background: tomato;
+    background: #FF8A65;
 }
 
 .breakTime {
-    background: yellowgreen;
+    background: #C5E1A5;
 }
 </style>
