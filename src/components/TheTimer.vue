@@ -1,6 +1,6 @@
 <template>
   <div>
-      <v-row justify="center">
+      <v-row justify="center" :class="{breakTime: interval, focus: !interval}">
           <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
               <span class="text-h1">{{formattedTime}}</span>
           </v-col>
@@ -86,6 +86,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.focus {
+    background: tomato;
+}
 
+.breakTime {
+    background: yellowgreen;
+}
 </style>
