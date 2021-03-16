@@ -37,6 +37,7 @@
 <script>
 import { mapState } from "vuex"
 import ConfigTime from "@/components/ConfigTime.vue"
+import * as Tone from 'tone'
 
 export default {
     name: "TheTimer",
@@ -48,7 +49,9 @@ export default {
             timePassed: 0,
             timerInterval: null,
             time: 0,
-            interval: false
+            interval: false,
+
+            sound: null
         }
     },
     computed: {
@@ -74,19 +77,7 @@ export default {
             this.timePassed = 0
         },
         toggle() {
-            let context, oscillator, contextGain, x = 2
-
-            context = new AudioContext() // Objeto para gerar o som
-            oscillator = context.createOscillator() // Oscilador, o que emite a senoide
-            contextGain = context.createGain() // Permite alterar a onda do som, para não corta-la, mas reduzi-la a zero gradativamente
-
-            oscillator.connect(contextGain) // Ligamos ele ao oscilador
-            contextGain.connect(context.destination) // conectamos a nossa saída de som
-            oscillator.start(0)
-
-            contextGain.gain.exponentialRampToValueAtTime(
-                0.00001, context.currentTime + x
-            )
+            this.sound.triggerAttackRelease("C4", "16n")
 
             this.interval = !this.interval
             this.$emit('toggle', this.interval)
@@ -113,6 +104,7 @@ export default {
         },
     },    
     created() {
+        this.sound = new Tone.Synth().toDestination()
         this.time = this.focusTime
     }
 }
