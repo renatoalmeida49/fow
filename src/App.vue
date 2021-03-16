@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="#FFCCBC"
+      color="#FAFAFA"
       dark
     >
     <v-spacer></v-spacer>
@@ -16,9 +16,12 @@
     </v-app-bar>
 
     <v-main fill-height>
-      <v-container fill-height>
+      <v-container
+        fill-height
+        :class="{breakTime: interval, focus: !interval}"
+      >
       
-      <TheTimer />
+      <TheTimer @toggle="toggle" />
 
       </v-container>
     </v-main>
@@ -37,7 +40,23 @@ export default {
   },
 
   data: () => ({
-    //
+    interval: false
   }),
+
+  methods: {
+    toggle() {
+      this.interval = !this.interval
+    }
+  }
 };
 </script>
+
+<style>
+.focus {
+    background: #FF8A65;
+}
+
+.breakTime {
+    background: #689F38;
+}
+</style>
