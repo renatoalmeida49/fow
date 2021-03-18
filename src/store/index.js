@@ -14,7 +14,6 @@ export default new Vuex.Store({
       CHANGE_TIME(state, payload) {
         state.focusTime = payload.focusTime
         state.breakTime = payload.breakTime
-        console.log(payload)
       }
   },
   actions: {

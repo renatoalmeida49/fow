@@ -1,7 +1,7 @@
 <template>
-    <v-row fill-height justify="center" :class="{breakTime: interval, focus: !interval}">
+    <v-row fill-height justify="center">
         <v-col cols="12" style="justify-content: center" class="d-flex">
-            <span class="text-h1 font-weight-black" style="color: black">
+            <span id="time" class="text-h1 text-md-h1 font-weight-black" style="color: black">
                 {{formattedTime}}
             </span>
         </v-col>
@@ -75,7 +75,7 @@ export default {
             this.timePassed = 0
         },
         toggle() {
-            this.sound.triggerAttackRelease("C4", "16n")
+            this.sound.triggerAttackRelease("C4", "8n")
 
             this.interval = !this.interval
             this.$emit('toggle', this.interval)
@@ -109,5 +109,7 @@ export default {
 </script>
 
 <style scoped>
-
+#time {
+    font-size: 8rem;
+}
 </style>

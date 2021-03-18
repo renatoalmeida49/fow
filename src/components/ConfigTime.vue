@@ -3,6 +3,7 @@
         <v-col cols="12" style="justify-content: center" class="justify-content-center d-flex">
             <v-dialog
                 v-model="dialog"
+                max-width="272px"
             >
                 <template v-slot:activator="{ on }">
                     <v-btn
@@ -13,35 +14,47 @@
                 </template>
 
                 <v-card>
-                    <v-card-title>
-                        Configurar tempo
+                    <v-card-title class="justify-center">
+                        Configurar
                     </v-card-title>
 
-                    <v-card-text>
-                        <p>Ajuste o tempo de foco:</p>
-                        <v-btn @click="increase(60, 'focus')">
-                            <v-icon>mdi-plus-thick</v-icon> Minutos
-                        </v-btn>
+                    <v-card-text class="d-flex justify-center">
+                        <p>Ajuste o tempo de foco e descanso:</p>
+                    </v-card-text>
 
+                    <v-card-text class="focus d-flex justify-center pt-4">
+                        <v-btn @click="increase(60, 'focus')" width="100%">
+                            <v-icon>mdi-numeric-positive-1</v-icon>
+                        </v-btn>
+                    </v-card-text>
+                    <v-card-text class="focus d-flex justify-center">
                         <span class="text-h1">{{formattedFocus}}</span>
-
-                        <v-btn @click="decrease(60, 'focus')">- Minutos</v-btn>
-
                     </v-card-text>
-
-                    <v-card-text>
-                        <p>Ajuste o tempo de descanso:</p>
-                        <v-btn @click="increase(60, 'break')">
-                            <v-icon>mdi-plus-thick</v-icon> Minutos
+                    <v-card-text class="focus d-flex justify-center">
+                        <v-btn @click="decrease(60, 'focus')" width="100%">
+                            <v-icon>mdi-numeric-negative-1</v-icon>
                         </v-btn>
+                    </v-card-text>
+
+                    <v-card-text class="breakTime d-flex justify-center pt-4">
+                        <v-btn @click="increase(60, 'break')" width="100%">
+                            <v-icon>mdi-numeric-positive-1</v-icon> 
+                        </v-btn>
+                    </v-card-text>
+                    <v-card-text class="breakTime d-flex justify-center">                    
                         <span class="text-h1">{{formattedBreaktime}}</span>
-
-                        <v-btn @click="decrease(60, 'break')">- Minutos</v-btn>
+                    </v-card-text>
+                    <v-card-text class="breakTime d-flex justify-center">
+                        <v-btn @click="decrease(60, 'break')" width="100%">
+                            <v-icon>mdi-numeric-negative-1</v-icon>
+                        </v-btn>
                     </v-card-text>
 
-                    <v-card-text>
-                        <v-btn @click="newTime">Configurar timer</v-btn>
-                    </v-card-text>
+                    <v-card-actions class="justify-center">
+                        
+                        <v-btn @click="newTime" class="mb-4">Configurar</v-btn>
+                        
+                    </v-card-actions>
                 </v-card>
             </v-dialog>
         </v-col>

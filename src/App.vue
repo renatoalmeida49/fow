@@ -15,7 +15,7 @@
     <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-main fill-height>
+    <v-main fill-height :class="{breakTime: interval, focus: !interval}">
       <v-container
         fill-height
         :class="{breakTime: interval, focus: !interval}"
